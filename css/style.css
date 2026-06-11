@@ -1,0 +1,93 @@
+/* Local Font Face Declarations (Self-hosted) */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/NotoSansJP[wght].ttf') format('truetype-variations'),
+    url('../assets/fonts/NotoSansJP[wght].ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/NotoSerifJP[wght].ttf') format('truetype-variations'),
+    url('../assets/fonts/NotoSerifJP[wght].ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Times New Roman';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/timesbd.ttf') format('truetype');
+}
+
+/* Base Page Styling */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #0c0d0e;
+  /* color: #fff; */
+  overflow-x: hidden;
+}
+
+/* Background WebP Tile Classes */
+.bg-brick-wall {
+  background-image: url('../assets/01_hero/01_bg_brick_wall.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 9 Explicit Helper Classes for Font Styles from design checklist */
+.font-notoserif-black {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+}
+
+.font-notoserif-heavy {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 800;
+}
+
+.font-notoserif-bold {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+}
+
+.font-notoserif-medium {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 500;
+}
+
+.font-dnp-b {
+  font-family: 'dnp-shuei-mincho-pr6', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  font-weight: 700;
+}
+
+.font-notosans-regular {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+}
+
+.font-notosans-medium {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+}
+
+.font-notosans-bold {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+}
+
+.font-times-bold {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 700;
+}
