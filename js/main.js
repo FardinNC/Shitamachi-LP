@@ -2,86 +2,33 @@
  * Shitamachi Detective Agency (下町探偵団) - Main JS logic
  */
 
+// CONFIGURATION: Replace with your live Next.js backend app URL in production (no trailing slash)
+const LIVE_BACKEND_URL = 'https://simple-proxy-taupe.vercel.app';
+
 document.addEventListener('DOMContentLoaded', () => {
-    initScrollReveal();
-    initFAQAccordions();
     initContactForm();
-    initMobileNav();
 });
-
-/**
- * Scroll Reveal Animation Effect on scroll
- */
-function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    revealElements.forEach(el => {
-        el.classList.add('transition-all', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
-        observer.observe(el);
-    });
-}
-
-/**
- * FAQ Accordion Panel toggles
- */
-function initFAQAccordions() {
-    const faqButtons = document.querySelectorAll('.faq-toggle');
-    
-    faqButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const panel = button.nextElementSibling;
-            const icon = button.querySelector('.faq-icon');
-            const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-            // Toggle expansion state
-            button.setAttribute('aria-expanded', !isExpanded);
-            
-            if (!isExpanded) {
-                panel.style.maxHeight = panel.scrollHeight + 'px';
-                panel.style.opacity = '1';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                panel.style.maxHeight = '0px';
-                panel.style.opacity = '0';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-    });
-}
 
 /**
  * Contact Form validation and processing
  */
 function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contact');
     if (!contactForm) return;
 
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Form field data retrieval
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData.entries());
-        
+
         console.log('Contact form submitted:', data);
 
         // Simple validation checks
         let isValid = true;
         const requiredFields = contactForm.querySelectorAll('[required]');
-        
+
         requiredFields.forEach(field => {
             if (!field.value.trim()) {
                 isValid = false;
@@ -96,29 +43,40 @@ function initContactForm() {
             return;
         }
 
-        // Mock success submission feedback
-        alert('お問い合わせが送信されました。担当者よりご連絡いたします。');
-        contactForm.reset();
-    });
-}
+        // Set loading state on submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = '送信中...';
 
-/**
- * Mobile Navigation Toggle
- */
-function initMobileNav() {
-    const navToggle = document.getElementById('mobile-nav-toggle');
-    const navMenu = document.getElementById('mobile-nav-menu');
-    
-    if (!navToggle || !navMenu) return;
+        // Determine backend endpoint URL
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const endpoint = isLocal
+            ? 'http://localhost:3000/api/shitamachi'
+            : `${LIVE_BACKEND_URL}/api/shitamachi`;
 
-    navToggle.addEventListener('click', () => {
-        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !isOpen);
-        
-        if (!isOpen) {
-            navMenu.classList.remove('hidden');
-        } else {
-            navMenu.classList.add('hidden');
-        }
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('お問い合わせが送信されました。担当者よりご連絡いたします。');
+                    contactForm.reset();
+                } else {
+                    alert('送信に失敗しました。時間をおいて再度お試しいただくか、お電話にて直接ご連絡ください。');
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('通信エラーが発生しました。ネットワーク接続を確認し、再度お試しください。');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
     });
 }

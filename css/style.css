@@ -39,13 +39,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Background WebP Tile Classes */
-.bg-brick-wall {
-  background-image: url('../assets/01_hero/01_bg_brick_wall.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 /* 9 Explicit Helper Classes for Font Styles from design checklist */
 .font-notoserif-black {
   font-family: 'Noto Serif JP', serif;
@@ -90,4 +83,186 @@ body {
 .font-times-bold {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 700;
+}
+
+/* Background WebP Tile Classes */
+.bg-brick-wall {
+  background-image: url('../assets/01_hero/01_bg_brick_wall.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-sunset-network {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(to bottom, #384a5e, #172630);
+}
+
+.bg-sunset-network::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/03_about/03_about_bg_sunset_network.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-about-statement {
+  position: relative;
+  isolation: isolate;
+  background-color: #264963;
+}
+
+.bg-about-statement::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/03_about/03_B.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-about-cta {
+  position: relative;
+  isolation: isolate;
+  background-color: #051328;
+}
+
+.bg-about-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/03_about/03_C.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Section 4 Services Menu Styling */
+.bg-services {
+  position: relative;
+  isolation: isolate;
+  background-color: #e8e3dd;
+  overflow: hidden;
+}
+
+.bg-services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2396px;
+  height: 932px;
+  transform: translateX(-50%);
+  background-image: url('../assets/04_services/04_bg.webp');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 2396px 934px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg-service-card {
+  background: linear-gradient(to bottom, #c7ccd3, #a9b5c4);
+  box-shadow: 7px 7px 9px rgba(71, 79, 84, 0.25);
+}
+
+/* Section 5 Reasons Styling */
+.bg-reasons {
+  position: relative;
+  isolation: isolate;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.bg-reasons::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1956px;
+  height: 1270px;
+  transform: translateX(-50%);
+  background-image: url('../assets/05_reasons/05_bg.webp');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 1956px 1270px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Section 7 Process Styling */
+.bg-process {
+  position: relative;
+  isolation: isolate;
+  background-color: #3a5268;
+  overflow: hidden;
+}
+
+.bg-process::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/07_process/bg.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Section 8 FAQ Styling */
+.bg-faq {
+  position: relative;
+  isolation: isolate;
+  background-color: #efe9e8;
+  overflow: hidden;
+}
+
+.bg-faq::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/08_faq/bg.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Section 9 & 10: Contact Form Styling */
+.bg-contact-form {
+  position: relative;
+  isolation: isolate;
+  background-color: #3a3a3a;
+  overflow: hidden;
+}
+
+.bg-contact-form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/09_10_form/bg.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.vertical-title {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  text-orientation: upright;
+  -webkit-text-orientation: upright;
 }
